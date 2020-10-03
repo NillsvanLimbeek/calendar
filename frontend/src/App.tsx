@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Header } from './components/Header';
-import { Sidebar } from './components/Sidebar/Sidebar';
+import { Sidebar } from './components/Sidebar';
 import { Main } from './components/Main';
 
 import './App.scss';
@@ -11,7 +11,7 @@ function App() {
         <div className="h-screen bg-gray-300">
             <Header />
 
-            <div className="sidebar px-5 flex">
+            <div className="main px-5 flex">
                 <Sidebar />
                 <Main />
             </div>

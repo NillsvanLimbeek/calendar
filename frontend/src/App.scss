@@ -1,4 +1,12 @@
-.sidebar {
+.main {
     height: calc(100% - 75px);
-    // padding-bottom: 25px;
+    padding-bottom: 25px;
+}
+
+.calendar {
+    height: calc(100% - 65px);
+}
+
+.days {
+    height: calc(100% - 80px);
 }
