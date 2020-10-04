@@ -1,7 +1,7 @@
 import React from 'react';
 import { eachHourOfInterval, startOfDay, endOfDay, format } from 'date-fns';
 
-const style = 'text-xs font-medium px-4 text-gray-500 transform -translate-y-4';
+const style = 'text-xs font-medium px-4 text-gray-500 transform -translate-y-3';
 
 export const Hours = () => {
     const day = new Date();
