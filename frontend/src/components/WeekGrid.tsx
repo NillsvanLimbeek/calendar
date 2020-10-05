@@ -15,16 +15,12 @@ export const WeekGrid = ({ date }: Props) => {
     });
 
     return (
-        <div className="days flex">
+        <div className="days flex overflow-scroll">
             <Hours />
 
             <div className="grid grid-cols-7 w-full">
                 {days.map((day, index) => (
-                    <DayRow
-                        key={index}
-                        day={day}
-                        last={days.length - 1 === index}
-                    />
+                    <DayRow key={index} day={day} />
                 ))}
             </div>
         </div>

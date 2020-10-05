@@ -1,11 +1,11 @@
 import React from 'react';
+import { addWeeks, subWeeks } from 'date-fns';
 
 import { Weekdays } from '../components/Weekdays';
 import { WeekGrid } from '../components/WeekGrid';
 import { CalendarControls } from '../components/CalendarControls';
 
 import { useDateState, useDateDispatch } from '../lib/context';
-import { addWeeks, subWeeks } from 'date-fns';
 
 export const Calendar = () => {
     const { date } = useDateState();
@@ -13,12 +13,9 @@ export const Calendar = () => {
 
     function handleWeek(week: 'next' | 'prev') {
         let newDate = date;
-
-        if (week === 'next') {
-            newDate = addWeeks(date, 1);
-        } else {
-            newDate = subWeeks(date, 1);
-        }
+        week === 'next'
+            ? (newDate = addWeeks(date, 1))
+            : (newDate = subWeeks(date, 1));
 
         dispatch({ type: 'SET_DATE', payload: newDate });
     }

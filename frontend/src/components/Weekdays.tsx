@@ -16,7 +16,7 @@ export const Weekdays = ({ date }: Props) => {
 
     return (
         <div className="flex">
-            <div className="w-16 bg-gray-200 rounded-t-sm"></div>
+            <div className="w-20 bg-gray-200 rounded-t-sm"></div>
 
             <ul className="grid grid-cols-7 w-full bg-gray-200 rounded-t-sm">
                 {days.map((day, index) => (

@@ -8,7 +8,7 @@ import './App.scss';
 
 function App() {
     return (
-        <div className="h-screen bg-gray-300">
+        <div className="h-screen bg-gray-300 overflow-hidden">
             <Header />
 
             <div className="main px-5 flex">

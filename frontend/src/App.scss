@@ -10,3 +10,15 @@
 .days {
     height: calc(100% - 80px);
 }
+
+.timeline__line {
+    height: 2px;
+}
+
+.timeline__bullet--left {
+    left: -4px;
+}
+
+.timeline__bullet--right {
+    right: -4px;
+}
