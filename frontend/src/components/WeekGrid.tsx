@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { endOfWeek, startOfWeek, eachDayOfInterval } from 'date-fns';
 
 import { DayRow } from './DayRow';
@@ -9,13 +9,23 @@ type Props = {
 };
 
 export const WeekGrid = ({ date }: Props) => {
-    const days = eachDayOfInterval({
-        start: startOfWeek(date),
-        end: endOfWeek(date),
-    });
+    const [days, setDays] = useState<Date[]>([]);
+
+    useEffect(() => {
+        const days = eachDayOfInterval({
+            start: startOfWeek(date),
+            end: endOfWeek(date),
+        });
+
+        setDays(days);
+
+        return () => {
+            setDays([]);
+        };
+    }, [date]);
 
     return (
-        <div className="days flex overflow-scroll">
+        <div className="days flex overflow-y-scroll">
             <Hours />
 
             <div className="grid grid-cols-7 w-full">

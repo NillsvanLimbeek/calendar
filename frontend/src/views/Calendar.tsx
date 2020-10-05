@@ -3,6 +3,7 @@ import { addWeeks, subWeeks } from 'date-fns';
 
 import { Weekdays } from '../components/Weekdays';
 import { WeekGrid } from '../components/WeekGrid';
+import { MonthGrid } from '../components/MonthGrid';
 import { CalendarControls } from '../components/CalendarControls';
 
 import { useDateState, useDateDispatch } from '../lib/context';
@@ -34,7 +35,8 @@ export const Calendar = () => {
 
             <div className="calendar bg-white rounded-sm shadow-md">
                 <Weekdays date={date} />
-                <WeekGrid date={date} />
+                {/* <WeekGrid date={date} /> */}
+                <MonthGrid date={date} />
             </div>
         </main>
     );

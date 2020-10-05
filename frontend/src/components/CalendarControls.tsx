@@ -46,7 +46,7 @@ export const CalendarControls = ({
                     </div>
 
                     <button
-                        className="px-4 py-2 text-white bg-blue-600 rounded-sm"
+                        className="px-4 py-2 text-sm text-white bg-blue-600 rounded-sm"
                         onClick={handleSetToday}
                     >
                         Today
