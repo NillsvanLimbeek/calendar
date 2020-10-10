@@ -1,16 +1,16 @@
 import express from 'express';
-// import { createConnection } from 'typeorm';
+import { createConnection } from 'typeorm';
 import { ApolloServer } from 'apollo-server-express';
 
 import 'reflect-metadata';
 
-// import { connection } from './src/type-orm.config';
+import { connection } from './src/type-orm.config';
 
 import { resolvers, typeDefs } from './src/lib/graphql/';
 
 const main = async () => {
     // connect db
-    // const orm = await createConnection(connection);
+    const orm = await createConnection(connection);
 
     const app = express();
 
