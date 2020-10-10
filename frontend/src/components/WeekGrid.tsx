@@ -25,7 +25,7 @@ export const WeekGrid = ({ date }: Props) => {
     }, [date]);
 
     return (
-        <div className="days flex overflow-y-scroll">
+        <div className="calendar flex overflow-y-scroll">
             <Hours />
 
             <div className="grid grid-cols-7 w-full">

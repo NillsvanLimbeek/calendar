@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { format } from 'date-fns';
+import { format, isToday } from 'date-fns';
 
 import { getDaysInMonth } from '../lib/utils/getDaysInMonth';
 
@@ -20,9 +20,20 @@ export const MonthGrid = ({ date }: Props) => {
     }, [date]);
 
     return (
-        <div className="grid grid-cols-7">
+        <div className="calendar grid grid-cols-7">
             {days.map((day, index) => (
-                <div key={index}>{format(day, 'dd EEE MMMM')}</div>
+                <div
+                    key={index}
+                    className={
+                        isToday(day)
+                            ? 'border-r border-b bg-blue-100'
+                            : 'border-r border-b border-gray-300'
+                    }
+                >
+                    <p className="text-right p-3 text-gray-600">
+                        {format(day, 'dd')} {isToday(day)}
+                    </p>
+                </div>
             ))}
         </div>
     );

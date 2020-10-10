@@ -5,6 +5,7 @@ import { State, Dispatch, Props } from './DateTypes';
 
 const initialState: State = {
     date: new Date(),
+    period: 'week',
 };
 
 const DateStateContext = createContext<State | undefined>(undefined);
@@ -14,7 +15,9 @@ function DateProvider({ children }: Props) {
     const [state, dispatch] = useReducer(DateReducer, initialState);
 
     return (
-        <DateStateContext.Provider value={{ date: state.date }}>
+        <DateStateContext.Provider
+            value={{ date: state.date, period: state.period }}
+        >
             <DateDispatchContext.Provider value={dispatch}>
                 {children}
             </DateDispatchContext.Provider>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { addWeeks, subWeeks } from 'date-fns';
 
 import { Weekdays } from '../components/Weekdays';
@@ -7,9 +8,10 @@ import { MonthGrid } from '../components/MonthGrid';
 import { CalendarControls } from '../components/CalendarControls';
 
 import { useDateState, useDateDispatch } from '../lib/context';
+import { Period } from '../lib/types';
 
 export const Calendar = () => {
-    const { date } = useDateState();
+    const { date, period } = useDateState();
     const dispatch = useDateDispatch();
 
     function handleWeek(week: 'next' | 'prev') {
@@ -25,19 +27,35 @@ export const Calendar = () => {
         dispatch({ type: 'SET_DATE', payload: new Date() });
     }
 
-    return (
-        <main className="w-full">
-            <CalendarControls
-                date={date}
-                handleWeek={(week) => handleWeek(week)}
-                handleSetToday={handleSetToday}
-            />
+    function handlePeriod(period: Period) {
+        dispatch({ type: 'SET_PERIOD', payload: period });
+    }
 
-            <div className="calendar bg-white rounded-sm shadow-md">
-                <Weekdays date={date} />
-                {/* <WeekGrid date={date} /> */}
-                <MonthGrid date={date} />
-            </div>
-        </main>
+    return (
+        <Router>
+            <main className="w-full">
+                <CalendarControls
+                    date={date}
+                    handleWeek={(week) => handleWeek(week)}
+                    handleSetToday={handleSetToday}
+                    handlePeriod={handlePeriod}
+                />
+
+                <div className="calendar bg-white rounded-sm shadow-md">
+                    <Weekdays date={date} period={period} />
+
+                    <Switch>
+                        <Route
+                            path="/week"
+                            component={() => <WeekGrid date={date} />}
+                        />
+                        <Route
+                            path="/month"
+                            component={() => <MonthGrid date={date} />}
+                        />
+                    </Switch>
+                </div>
+            </main>
+        </Router>
     );
 };

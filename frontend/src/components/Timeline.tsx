@@ -22,7 +22,7 @@ export const Timeline = () => {
         const timeline = document.querySelector('#timeline');
 
         setTimeout(() => {
-            timeline?.scrollIntoView({ behavior: 'smooth' });
+            timeline?.scrollIntoView({ block: 'center' });
         }, 0);
     }, []);
 
