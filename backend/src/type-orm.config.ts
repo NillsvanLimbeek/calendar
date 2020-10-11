@@ -8,7 +8,8 @@ export const connection: ConnectionOptions = {
     password: 'postgres',
     database: 'test_db',
     logging: false,
-    entities: ['src/lib/entities/**/*.ts'],
+    synchronize: true,
+    entities: ['src/lib/entities/*.ts'],
     migrations: ['src/lib/migrations/**/*.ts'],
     subscribers: ['src/lib/subscriber/**/*.ts'],
     cli: {
