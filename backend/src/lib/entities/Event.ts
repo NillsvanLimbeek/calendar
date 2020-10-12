@@ -1,7 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    CreateDateColumn,
+    UpdateDateColumn,
+    BaseEntity,
+} from 'typeorm';
 
 @Entity()
-export class Event {
+export class Event extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -13,4 +20,10 @@ export class Event {
 
     @Column()
     title: string;
+
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
 }

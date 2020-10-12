@@ -12,5 +12,6 @@ export const typeDefs = gql`
 
     type Mutation {
         createEvent(input: NewEventInput!): Event
+        updateEvent(input: UpdateEventInput!): Event
     }
 `;

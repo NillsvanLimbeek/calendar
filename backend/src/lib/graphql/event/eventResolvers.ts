@@ -1,35 +1,41 @@
 import { IResolvers } from 'apollo-server-express';
 
 import { Event } from '../../entities';
-import { Database, NewEventInput } from 'src/lib/types';
+import { NewEventInput, UpdateEventInput } from 'src/lib/types';
 
 export const eventResolvers: IResolvers = {
     Query: {
-        event: async (
-            _root: void,
-            _arg: void,
-            { orm }: Database
-        ): Promise<Event[]> => {
-            return await orm.manager.find(Event, {});
+        event: async (): Promise<Event[]> => {
+            return Event.find();
         },
     },
 
     Mutation: {
         createEvent: async (
             _root: void,
-            { input }: NewEventInput,
-            { orm }: Database
+            { input }: NewEventInput
         ): Promise<Event> => {
-            const eventRepository = orm.getRepository(Event);
+            return Event.create({
+                title: input.title,
+                start: input.start,
+                end: input.end,
+            }).save();
+        },
 
-            const { title, start, end } = input;
+        updateEvent: async (
+            _root: void,
+            { input }: UpdateEventInput
+        ): Promise<Event | undefined> => {
+            const event = Event.findOne(input.id);
 
-            const event = await orm.manager.create(Event, {
-                title,
-                start,
-                end,
-            });
-            await eventRepository.save(event);
+            if (!event) {
+                return undefined;
+            }
+
+            await Event.update(
+                { id: input.id },
+                { title: input.title, start: input.start, end: input.end }
+            );
 
             return event;
         },
