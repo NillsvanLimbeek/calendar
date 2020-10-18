@@ -6,10 +6,10 @@ export const connection: ConnectionOptions = {
     port: 5432,
     username: 'postgres',
     password: 'postgres',
-    database: 'test_db',
+    database: 'calendar',
     logging: false,
     synchronize: true,
-    entities: ['src/lib/entities/*.ts'],
+    entities: ['src/lib/entities/**/*.ts'],
     migrations: ['src/lib/migrations/**/*.ts'],
     subscribers: ['src/lib/subscriber/**/*.ts'],
     cli: {

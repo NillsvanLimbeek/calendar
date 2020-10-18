@@ -6,18 +6,18 @@ import 'reflect-metadata';
 
 import { connection } from './src/type-orm.config';
 
-import { schema } from './src/lib/graphql/';
+import { schema } from './src/graphql';
 
 const main = async () => {
     // connect db
-    const orm = await createConnection(connection);
+    await createConnection(connection);
 
     const app = express();
 
     // setup graphql
     const apolloServer = new ApolloServer({
         schema,
-        context: () => ({ orm }),
+        context: () => ({}),
     });
 
     apolloServer.applyMiddleware({

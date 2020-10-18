@@ -7,11 +7,12 @@ export const typeDefs = gql`
     }
 
     type Query {
-        event: [Event]
+        events: [Event]
     }
 
     type Mutation {
         createEvent(input: NewEventInput!): Event
         updateEvent(input: UpdateEventInput!): Event
+        deleteEvent(id: ID!): Boolean
     }
 `;

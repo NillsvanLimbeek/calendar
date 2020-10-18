@@ -1,11 +1,11 @@
 import { IResolvers } from 'apollo-server-express';
 
-import { Event } from '../../entities';
-import { NewEventInput, UpdateEventInput } from 'src/lib/types';
+import { Event } from '../../lib/entities';
+import { NewEventInput, UpdateEventInput } from '../../lib/types';
 
 export const eventResolvers: IResolvers = {
     Query: {
-        event: async (): Promise<Event[]> => {
+        events: async (): Promise<Event[]> => {
             return Event.find();
         },
     },
@@ -38,6 +38,20 @@ export const eventResolvers: IResolvers = {
             );
 
             return event;
+        },
+
+        deleteEvent: async (
+            _root: void,
+            { id }: { id: string }
+        ): Promise<boolean | undefined> => {
+            const event = await Event.findOne(id);
+
+            if (!event) {
+                return undefined;
+            }
+
+            await Event.delete(id);
+            return true;
         },
     },
 };

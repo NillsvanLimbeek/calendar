@@ -1,0 +1,10 @@
+query Events {
+    events {
+        id
+        start
+        end
+        title
+        createdAt
+        updatedAt
+    }
+}
